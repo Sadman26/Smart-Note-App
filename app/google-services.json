@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "449840099328",
+    "project_id": "carbon26xe",
+    "storage_bucket": "carbon26xe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449840099328:android:6546e77ce58a6adf8d68e5",
+        "android_client_info": {
+          "package_name": "com.example.ajaira"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "449840099328-a1acl8r3u6dfk6p9gg771srl2fiptqog.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCb1gKVz5S6VvY4_glWX3PxELKHCSGypvI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "449840099328-a1acl8r3u6dfk6p9gg771srl2fiptqog.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
