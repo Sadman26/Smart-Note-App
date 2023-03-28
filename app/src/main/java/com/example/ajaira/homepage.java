@@ -16,14 +16,16 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class homepage extends AppCompatActivity {
     FirebaseAuth auth=FirebaseAuth.getInstance();
     FirebaseDatabase database=FirebaseDatabase.getInstance();
     FloatingActionButton micbtn;
     TextView txt;
-
+    String current_time= DateFormat.getDateTimeInstance().format(new Date());
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,6 @@ public class homepage extends AppCompatActivity {
         getSupportActionBar().setTitle("Homepage");
         micbtn=findViewById(R.id.micbtn);
         txt=findViewById(R.id.txtt);
-        String currusr=auth.getCurrentUser().getUid();
         micbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,7 +62,7 @@ public class homepage extends AppCompatActivity {
                 if(resultCode==RESULT_OK && data!=null){
                     ArrayList<String> result=data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     txt.setText(result.get(0));
-                    database.getReference().child("User").child(auth.getCurrentUser().getUid()).child("Notes").setValue(result.get(0));
+                    database.getReference().child("User").child(auth.getCurrentUser().getUid()).child("Notes").child(current_time).setValue(result.get(0));
                 }
                 break;
         }
