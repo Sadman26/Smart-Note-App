@@ -29,6 +29,8 @@ public class homepage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
+        //title
+        getSupportActionBar().setTitle("Homepage");
         micbtn=findViewById(R.id.micbtn);
         txt=findViewById(R.id.txtt);
         String currusr=auth.getCurrentUser().getUid();

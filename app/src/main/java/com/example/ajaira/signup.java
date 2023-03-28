@@ -20,6 +20,7 @@ public class signup extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("Signup");
         setContentView(R.layout.activity_signup);
         email = findViewById(R.id.usrnewemail);
         password = findViewById(R.id.usrnewpass);

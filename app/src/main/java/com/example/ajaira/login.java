@@ -22,6 +22,7 @@ public class login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("Login");
         setContentView(R.layout.activity_login);
         email = findViewById(R.id.usremail);
         password = findViewById(R.id.usrpass);
