@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +25,8 @@ public class homepage extends AppCompatActivity {
     FirebaseAuth auth=FirebaseAuth.getInstance();
     FirebaseDatabase database=FirebaseDatabase.getInstance();
     FloatingActionButton micbtn;
-    TextView txt;
+    EditText txt;
+    Button savebtn;
     String current_time= DateFormat.getDateTimeInstance().format(new Date());
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
@@ -39,6 +41,16 @@ public class homepage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 speak();
+            }
+        });
+        savebtn=findViewById(R.id.savebtn);
+        savebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                database.getReference().child("User").child(auth.getCurrentUser().getUid()).child("Notes").child(current_time).setValue(txt.getText().toString());
+                //if save toast
+                Toast.makeText(homepage.this, "Saved", Toast.LENGTH_SHORT).show();
+                txt.setText("");
             }
         });
     }
