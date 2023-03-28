@@ -2,9 +2,11 @@ package com.example.ajaira;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -13,6 +15,7 @@ public class signup extends AppCompatActivity {
     FirebaseAuth auth=FirebaseAuth.getInstance();
     EditText email,password;
     Button signup;
+    ImageView signinlink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,7 @@ public class signup extends AppCompatActivity {
         email = findViewById(R.id.usrnewemail);
         password = findViewById(R.id.usrnewpass);
         signup= findViewById(R.id.signupbtn);
+        signinlink = findViewById(R.id.linktosignin);
         signup.setOnClickListener(v -> {
             String email1 = email.getText().toString();
             String password1 = password.getText().toString();
@@ -35,6 +39,10 @@ public class signup extends AppCompatActivity {
             else{
                 Toast.makeText(signup.this, "User not Created", Toast.LENGTH_SHORT).show();
             }
+        });
+        signinlink.setOnClickListener(v -> {
+            Intent intent = new Intent(signup.this,login.class);
+            startActivity(intent);
         });
     }
 }
