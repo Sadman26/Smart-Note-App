@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
     RatingBar ratingBar;
     FloatingActionButton fab;
     Switch aSwitch;
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         ratingBar = findViewById(R.id.rate);
         fab = findViewById(R.id.floatx);
         aSwitch = findViewById(R.id.switchx);
-        //show rating in toast
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
@@ -35,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Rating: " + v, Toast.LENGTH_SHORT).show();
             }
         });
-        //show switch turn on or off in toast
         aSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,6 +49,5 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Pressed!", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }
