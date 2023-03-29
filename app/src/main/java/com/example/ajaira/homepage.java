@@ -111,7 +111,6 @@ public class homepage extends AppCompatActivity {
                 if(resultCode==RESULT_OK && data!=null){
                     ArrayList<String> result=data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     txt.setText(result.get(0));
-                    database.getReference().child("User").child(auth.getCurrentUser().getUid()).child("Notes").child(current_time).setValue(result.get(0));
                 }
                 break;
         }
