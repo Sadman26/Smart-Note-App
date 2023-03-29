@@ -81,8 +81,8 @@ public class rating extends AppCompatActivity {
                     rating.requestFocus();
                     return;
                 }
-                database.getReference().child("Other").child(mAuth.getCurrentUser().getUid()).child("Review").setValue(reviewtxt);
-                database.getReference().child("Other").child(mAuth.getCurrentUser().getUid()).child("Rating").setValue(ratingtxt1);
+                database.getReference().child("User").child(mAuth.getCurrentUser().getUid()).child("Others").child("Review").setValue(reviewtxt);
+                database.getReference().child("User").child(mAuth.getCurrentUser().getUid()).child("Others").child("Rating").setValue(ratingtxt);
                 Toast.makeText(rating.this, "Thank You For Your Review", Toast.LENGTH_SHORT).show();
                 review.setText("");
                 rating.setRating(0);
