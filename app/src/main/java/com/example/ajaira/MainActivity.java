@@ -1,17 +1,17 @@
 package com.example.ajaira;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth=FirebaseAuth.getInstance();
+    FirebaseDatabase database=FirebaseDatabase.getInstance();
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();
@@ -21,6 +21,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
+            case R.id.rating:
+                Intent intent3=new Intent(MainActivity.this,rating.class);
+                startActivity(intent3);
+                finish();
+                return true;
             case R.id.home:
                 Intent intent2=new Intent(MainActivity.this,homepage.class);
                 startActivity(intent2);
