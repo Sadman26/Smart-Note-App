@@ -1,53 +1,49 @@
 package com.example.ajaira;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.RatingBar;
-import android.widget.Switch;
-import android.widget.Toast;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    RatingBar ratingBar;
-    FloatingActionButton fab;
-    Switch aSwitch;
-    @SuppressLint("MissingInflatedId")
+    FirebaseAuth auth=FirebaseAuth.getInstance();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.menu,menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.home:
+                Intent intent2=new Intent(MainActivity.this,homepage.class);
+                startActivity(intent2);
+                finish();
+                return true;
+            case R.id.notes:
+                Intent intent1=new Intent(MainActivity.this,MainActivity.class);
+                startActivity(intent1);
+                finish();
+                return true;
+            case R.id.logout:
+                auth.signOut();
+                Intent intent=new Intent(MainActivity.this,login.class);
+                startActivity(intent);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ratingBar = findViewById(R.id.rate);
-        fab = findViewById(R.id.floatx);
-        aSwitch = findViewById(R.id.switchx);
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                database.getReference().child("Other").child("rating").setValue(v);
-                Toast.makeText(MainActivity.this, "Rating: " + v, Toast.LENGTH_SHORT).show();
-            }
-        });
-        aSwitch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (aSwitch.isChecked()) {
-                    Toast.makeText(MainActivity.this, "Switch is on", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(MainActivity.this, "Switch is off", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Pressed!", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 }

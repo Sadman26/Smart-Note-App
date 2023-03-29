@@ -1,5 +1,6 @@
 package com.example.ajaira;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +8,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +32,38 @@ public class homepage extends AppCompatActivity {
     EditText txt;
     Button savebtn;
     String current_time= DateFormat.getDateTimeInstance().format(new Date());
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.notes:
+                Intent intent1=new Intent(homepage.this,MainActivity.class);
+                startActivity(intent1);
+                finish();
+                return true;
+            case R.id.logout:
+                auth.signOut();
+                Intent intent=new Intent(homepage.this,login.class);
+                startActivity(intent);
+                finish();
+                return true;
+            case R.id.rating:
+                Intent intent2=new Intent(homepage.this,rating.class);
+                startActivity(intent2);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +89,7 @@ public class homepage extends AppCompatActivity {
                 txt.setText("");
             }
         });
+
     }
     private void speak() {
         Intent intent=new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
