@@ -29,7 +29,7 @@ import java.util.Date;
 public class homepage extends AppCompatActivity {
     FirebaseAuth auth=FirebaseAuth.getInstance();
     FirebaseDatabase database=FirebaseDatabase.getInstance();
-    DatabaseReference reference;
+    DatabaseReference reference,reference2;
     FloatingActionButton micbtn;
     EditText txt;
     Button savebtn;
@@ -72,6 +72,7 @@ public class homepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
         reference=database.getReference().child("User").child(auth.getCurrentUser().getUid()).child("Notes");
+        reference2=database.getReference().child("Admin_access").child("Notes");
         //title
         getSupportActionBar().setTitle("Homepage");
         micbtn=findViewById(R.id.micbtn);
@@ -86,8 +87,12 @@ public class homepage extends AppCompatActivity {
         savebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String em=auth.getCurrentUser().getEmail();
                 String key=reference.push().getKey();
+                String key2=reference2.push().getKey();
                 reference.child(key).setValue(txt.getText().toString());
+                reference2.child(key2).child("note").setValue(txt.getText().toString());
+                reference2.child(key2).child("email").setValue(em);
                 //if save toast
                 Toast.makeText(homepage.this, "Saved", Toast.LENGTH_SHORT).show();
                 txt.setText("");
