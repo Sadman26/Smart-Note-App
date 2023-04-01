@@ -10,9 +10,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class signup extends AppCompatActivity {
     FirebaseAuth auth=FirebaseAuth.getInstance();
+    FirebaseDatabase database=FirebaseDatabase.getInstance();
     EditText email,password;
     Button signup;
     ImageView signinlink;
