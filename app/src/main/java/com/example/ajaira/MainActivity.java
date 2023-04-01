@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                     firenote.setTextSize(25);
                     firenote.setTextColor(getResources().getColor(R.color.black));
                     firenote.setTypeface(Typeface.DEFAULT_BOLD);
+                    firenote.setBackground(null);
                 }
             }
         });
